@@ -140,8 +140,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         validator: (value) {
                           password = value?.trim() ?? "";
-                          return Validate.requiredField(
-                              value ?? "", '${S.of(context)!.password_is_required}');
+                          return Validate.requiredField(value ?? "",
+                              '${S.of(context)!.password_is_required}');
                         },
                         onSaved: (String? value) {
                           password = value ?? "";
@@ -176,30 +176,51 @@ class _LoginScreenState extends State<LoginScreen> {
                       SizedBox(
                         height: 20.0,
                       ),
-                      RoundedLoadingButton(
-                        child: Text('${S.of(context)!.login}',
-                            style: TextStyle(color: Colors.white)),
-                        controller: _btnController,
-                        onPressed: submitLogin,
-                        color: Colors.blue,
-                        borderRadius: 5.0,
-                        width: MediaQuery.of(context).size.width,
+                      SizedBox(
+                        height:60,
+                        child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.blue, // Background color
+                              elevation: 5, // Elevation
+                              shape: RoundedRectangleBorder(
+                                // Shape
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 10), // Padding
+                            ),
+                            onPressed:  submitLogin,
+                            child: Text('${S.of(context)!.login}')),
+                            
                       ),
                       SizedBox(
-                        height: 50.0,
+                        height: 20,
                       ),
+                      // RoundedLoadingButton(
+                      //   child: Text(
+                      //     '${S.of(context)!.login}',
+                      //     style: TextStyle(color: Colors.black),
+                      //   ),
+                      //   controller: _btnController,
+                      //   onPressed: submitLogin,
+                      //   color: Color.fromARGB(255, 50, 50, 250),
+                      //   borderRadius: 5.0,
+                      //   width: MediaQuery.of(context).size.width,
+                      // ),
+                      // SizedBox(
+                      //   height: 50.0,
+                      // ),
                       Center(
                         child: RichText(
                           text: TextSpan(children: [
                             TextSpan(
-                                text: ' ${S.of(context)!.forgetPassword}',
-                                style:
-                                    Styles.p.copyWith(color: Color(0xff000000)),
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () => 
-                                        Navigator.pushNamed(
-                                            context, '/forget-password'),
-                                      ),
+                              text: ' ${S.of(context)!.forgetPassword}',
+                              style:
+                                  Styles.p.copyWith(color: Color(0xff000000)),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () => Navigator.pushNamed(
+                                    context, '/forget-password'),
+                            ),
                           ]),
                         ),
                       ),
